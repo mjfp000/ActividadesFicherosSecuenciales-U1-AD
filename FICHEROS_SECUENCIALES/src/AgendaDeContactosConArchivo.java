@@ -52,9 +52,7 @@ public class AgendaDeContactosConArchivo {
 						exportarContactos();
 						break;
 					case "7":
-						System.out.println(
-								"Opcion de copia de archivos (intento desde parametros, si no funciona uno de los parametros, se pedira corregirlo):");
-
+						System.out.println("Opcion de copia de archivos (intento desde parametros, si no funciona uno de los parametros, se pedira corregirlo):");
 						Scanner tempCopy = new Scanner(System.in);
 						System.out.println("Introduce el archivo a copiar:");
 						String archivo = tempCopy.next();
