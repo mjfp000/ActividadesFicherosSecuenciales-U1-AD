@@ -52,22 +52,23 @@ public class AgendaDeContactosConArchivo {
 						exportarContactos();
 						break;
 					case "7":
-						System.out.println("Opcion de copia de archivos (intento desde parametros, si no funciona uno de los parametros, se pedira corregirlo):");
-						
+						System.out.println(
+								"Opcion de copia de archivos (intento desde parametros, si no funciona uno de los parametros, se pedira corregirlo):");
+
 						Scanner tempCopy = new Scanner(System.in);
 						System.out.println("Introduce el archivo a copiar:");
 						String archivo = tempCopy.next();
 						System.out.println("Introduce el archivo destino:");
 						String destino = tempCopy.next();
-						
+
 						if (copiarArchivos(archivo, destino)) {
 							System.out.println("La copia se completo correctamente.");
 							pausa();
-						}else {
+						} else {
 							System.out.println("La copia fallo.");
 							pausa();
 						}
-						
+
 						break;
 					case "8":
 						salir = true;
@@ -97,8 +98,8 @@ public class AgendaDeContactosConArchivo {
 	}
 
 	private static boolean copiarArchivos(String archivo, String destino) {
-		//System.out.println("Opcion de copiar archivos:");
-		//System.out.println("Introduce la ruta del archivo a copiar.");
+		// System.out.println("Opcion de copiar archivos:");
+		// System.out.println("Introduce la ruta del archivo a copiar.");
 
 		File objFile1;
 		String str = archivo;
@@ -355,11 +356,11 @@ public class AgendaDeContactosConArchivo {
 
 					System.out.println("Contacto encontrado: [" + contacto.getNombre() + "/" + contacto.getApellidos()
 							+ "/" + contacto.getTelefono() + "]");
-					
+
 					encontrado = true;
 				}
 			}
-			
+
 			if (!encontrado) {
 				System.out.println("No se han encontrado contactos.");
 			}

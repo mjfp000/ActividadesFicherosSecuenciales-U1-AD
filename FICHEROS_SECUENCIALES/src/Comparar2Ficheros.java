@@ -76,7 +76,7 @@ public class Comparar2Ficheros {
 					noSalir = false;
 					break;
 				}
-				
+
 				if (temp1.equals(temp2)) {
 				} else {
 					objDOS.writeUTF("Diferencia en linea " + linea + ". (" + temp1 + "|" + temp2 + ")\n");
