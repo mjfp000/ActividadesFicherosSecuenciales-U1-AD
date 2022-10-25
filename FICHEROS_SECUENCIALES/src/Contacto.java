@@ -4,6 +4,16 @@ public class Contacto {
 	String apellidos;
 	String telefono;
 
+	public Contacto() {
+		this("", "", "");
+	}
+	
+	public Contacto(String nombre, String apellidos, String telefono) {
+	    this.nombre = nombre;
+	    this.apellidos = apellidos;
+	    this.telefono = telefono;
+	 }
+	
 	public String getNombre() {
 		return nombre;
 	}
