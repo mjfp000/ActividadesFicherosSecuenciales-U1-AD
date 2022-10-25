@@ -184,6 +184,50 @@ public class AgendaDeContactosConArchivo {
 		}
 	}
 
+	private static void exportarContactosBien() throws FileNotFoundException {
+		File objFile;
+		String str;
+		boolean todaviaNoHayArchivoVálido = true;
+		do {
+			System.out.println("Introduce el nombre de un archivo no existente.");
+			Scanner s = new Scanner(System.in);
+			str = s.next();
+			objFile = new File(str);
+			if (!objFile.exists()) {
+				todaviaNoHayArchivoVálido = false;
+				System.out.println("OK!");
+				break;
+			} else {
+				System.out.println("El fichero no es valido.");
+			}
+		} while (todaviaNoHayArchivoVálido);
+		
+		DataOutputStream objetoExportante = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(objFile)));
+		int contador = 0;
+		
+		for (Contacto contacto : agendaDeContactos) {
+			try {
+				objetoExportante.writeUTF(contacto.getNombre());
+				objetoExportante.writeUTF("_");
+				objetoExportante.writeUTF(contacto.getApellidos());
+				objetoExportante.writeUTF("_");
+				objetoExportante.writeUTF(contacto.getTelefono());
+				objetoExportante.writeUTF("|");
+				contador++;
+			} catch (IOException e) {
+				System.out.println("Ha ocurrido un error: " + e);
+			}
+		}
+
+		System.out.println("Se han exportado bien " + contador + " contactos.");
+		try {
+			objetoExportante.close();
+		} catch (IOException e) {
+			System.out.println("Ha ocurrido un error: " + e);
+		}
+		pausa();
+	}
+	
 	private static void importarContactosBien() throws FileNotFoundException {
 		File objFile;
 		boolean todaviaNoHayArchivoVálido = true;
@@ -261,50 +305,6 @@ public class AgendaDeContactosConArchivo {
 		System.out.println("Se han importado bien " + contador + " contactos.");
 		try {
 			objetoImportante.close();
-		} catch (IOException e) {
-			System.out.println("Ha ocurrido un error: " + e);
-		}
-		pausa();
-	}
-	
-	private static void exportarContactosBien() throws FileNotFoundException {
-		File objFile;
-		String str;
-		boolean todaviaNoHayArchivoVálido = true;
-		do {
-			System.out.println("Introduce el nombre de un archivo no existente.");
-			Scanner s = new Scanner(System.in);
-			str = s.next();
-			objFile = new File(str);
-			if (!objFile.exists()) {
-				todaviaNoHayArchivoVálido = false;
-				System.out.println("OK!");
-				break;
-			} else {
-				System.out.println("El fichero no es valido.");
-			}
-		} while (todaviaNoHayArchivoVálido);
-		
-		DataOutputStream objetoExportante = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(objFile)));
-		int contador = 0;
-		
-		for (Contacto contacto : agendaDeContactos) {
-			try {
-				objetoExportante.writeUTF(contacto.getNombre());
-				objetoExportante.writeUTF("_");
-				objetoExportante.writeUTF(contacto.getApellidos());
-				objetoExportante.writeUTF("_");
-				objetoExportante.writeUTF(contacto.getTelefono());
-				objetoExportante.writeUTF("|");
-				contador++;
-			} catch (IOException e) {
-				System.out.println("Ha ocurrido un error: " + e);
-			}
-		}
-
-		System.out.println("Se han exportado bien " + contador + " contactos.");
-		try {
-			objetoExportante.close();
 		} catch (IOException e) {
 			System.out.println("Ha ocurrido un error: " + e);
 		}
